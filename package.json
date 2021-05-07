@@ -1,0 +1,17 @@
+{
+  "name": "effection-process-miniguide",
+  "version": "1.0.0",
+  "description": "Writing a filewatcher in effection",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Charles Lowell <cowboyd@frontside.io>",
+  "license": "ISC",
+  "devDependencies": {
+    "@effection/node": "^2.0.0-preview.12",
+    "effection": "^2.0.0-preview.12",
+    "execa": "^5.0.0"
+  }
+}
