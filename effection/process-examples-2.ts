@@ -1,15 +1,14 @@
-import { forever } from 'effection';
-import { main, createDaemon, createProcess } from '@effection/node';
+import { main, daemon, exec, Process } from '@effection/node';
 
 main(function* start() {
-  let clean = yield createProcess('npm run clean');
-  yield clean.expect();
+  let clean: Process = yield exec('npm run clean');
+  yield clean.stdout.forEach(data => { process.stdout.write(data) });
 
-  let build = yield createProcess('npm run build');
-  yield build.expect();
+  let build: Process = yield exec('npm run build');
+  yield build.stdout.forEach(data => { process.stdout.write(data) })
 
-  yield createDaemon('node start.js');
+  yield daemon('node start.js');
 
-  yield forever;
+  yield;
   //<- daemon exits when generator finishes.
 })

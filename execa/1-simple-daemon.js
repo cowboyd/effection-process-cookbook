@@ -1,8 +1,13 @@
 import execa from 'execa';
 
 (async function main() {
-  await execa('node', ['start.js']).stdout.pipe(process.stdout);
+  let result = execa('node', ['start.js'])
+  result.stdout.pipe(process.stdout);
+  await result;
+  throw new Error('node start.js quit unexpectedly');
 })()
+
+setTimeout(() => {}, 300000000);
 
 /**
  * Pros:
@@ -13,8 +18,8 @@ import execa from 'execa';
  *
  * Cons:
  *
- * 1. if there is an error, the process hangs instead of exiting with an stack trace
- * 2. if the process exits successfully, the process hangs instead of exiting with an error
+ * 1. if there is an error, the process exits immetehangs instead of exiting with an stack trace
+ * 2. if the process exits successfully, the process hangs instead of exiting with an error (because node start is a daemon and should never quit.)
  *
  */
 

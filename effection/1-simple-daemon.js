@@ -1,9 +1,7 @@
-import { sleep } from 'effection';
-import { main, createDaemon } from '@effection/node';
+import { main, daemon } from '@effection/node';
 
 main(function*() {
-  yield createDaemon('node start.js');
+  let process = yield daemon('node start.js');
 
-  yield sleep();
-  //<- daemon exits when generator finishes.
+  yield process.stdout.forEach(data => console.log(data));
 })

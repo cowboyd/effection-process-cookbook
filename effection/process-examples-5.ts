@@ -1,5 +1,5 @@
-import { forever } from 'effection';
-import { main, createDaemon, createProcess, ProcessResult } from '@effection/node';
+import { sleep } from 'effection';
+import { main, on, daemon, exec, ProcessResult } from '@effection/node';
 
 import { watch } from 'chokidar';
 
@@ -22,14 +22,14 @@ function* start() {
 
   yield sh("npm run build");
 
-  let daemon = yield createDaemon('node start.js');
+  let { stdout } = yield daemon('node start.js');
 
 
-  yield daemon.stdout.forEach(output => console.log(output));
+  yield stdout.forEach(output => console.log(output));
   //<- daemon exits when generator finishes.
 }
 
 function *sh(command: string): Operation<void> {
-  let process = yield createProcess(command);
+  let process = yield exec(command);
   yield process.stdout.forEach(output => console.log(output));
 }
