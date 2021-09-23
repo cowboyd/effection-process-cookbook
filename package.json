@@ -10,11 +10,12 @@
   "author": "Charles Lowell <cowboyd@frontside.io>",
   "license": "ISC",
   "devDependencies": {
-    "@effection/node": "^2.0.0-preview.13",
+    "@effection/process": "^2.0.0-beta.16",
     "@frontside/eslint-config": "^2.0.0",
     "@frontside/typescript": "^1.1.1",
     "@types/node": "^15.0.2",
-    "effection": "2.0.0-preview.14",
+    "chokidar": "^3.5.2",
+    "effection": "2.0.0-beta.17",
     "execa": "^5.0.0",
     "typescript": "^4.2.4",
     "why-is-node-running": "^2.2.0"
